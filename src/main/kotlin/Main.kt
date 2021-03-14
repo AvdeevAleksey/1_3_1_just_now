@@ -2,7 +2,6 @@ fun main() {
     print("Введите время в секундах: ")
     val time:Int = readLine()!!.toInt()
     println("был(а) в сети ${agoToText(time)}")
-    print("${(time / 60)}")
 }
 
 fun agoToText(time: Int,t:Int = 60): String {
