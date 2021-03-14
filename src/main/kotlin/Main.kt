@@ -2,6 +2,7 @@ fun main() {
     print("Введите время в секундах: ")
     val time:Int = readLine()!!.toInt()
     println("был(а) в сети ${agoToText(time)}")
+    print("${(time / 60)}")
 }
 
 fun agoToText(time: Int,t:Int = 60): String {
@@ -19,17 +20,23 @@ fun agoStringText(time: Int, t:Int = 60): String {
     return when (time) {
         in t + 1 until t * t -> {
             when (time / t) {
-                1, 21, 31, 41, 51 -> "минуту"
-                2, 22, 32, 42, 52 -> "минуты"
+                in 11..19 -> "минут"
+            else -> when (time / t % 10) {
+                1 -> "минуту"
+                in 2..4 -> "минуты"
                 else -> "минут"
+                }
             }
         }
         else -> {
-            when (time / (t * t)) {
-                1, 21, 31, 41, 51 -> "час"
-                2, 22, 32, 42, 52 -> "часа"
-                else -> "часов"
+            when (time / t * t) {
+                in 11..19 -> "часов"
+                else -> when (time / (t * t) % 10) {
+                    1 -> "час"
+                    in 2..4 -> "часа"
+                    else -> "часов"
                 }
             }
         }
     }
+}
